@@ -43,27 +43,58 @@ export default {
     printItems() {
       let items = [];
       let separator = [];
-      let maxLength = 10;
+      let maxLength = 10; // базовая настройка
+      let maxLeftLength;
+      let maxRightLength;
 
       if (this.redItems.length && this.greenItems.length) {
-        separator = [{type: 'separator'}];
+        separator = [{ type: "separator" }];
       }
 
-      let deltaRed = 0;
-      let deltaBlue = 0;
-      const sumLength = this.redItems.length + this.greenItems.length
+      const sumLength = this.redItems.length + this.greenItems.length;
 
-      if (sumLength <= 10) {
-        console.log('Ok!');
-      } else if (sumLength > 10) {
-        alert(1)
+      if (sumLength > maxLength) {
+        // if (this.redItems.length === 5) {
+        //   maxLeftLength = 5;
+        // }
+        // if (this.greenItems.length === 5) {
+        //   maxRightLength = 5;
+        // }
 
         if (this.redItems.length > 5) {
-          deltaRed = this.redItems.length
-        }
-      }
+          maxRightLength = maxLength - this.redItems.length;
 
-      items = [...this.redItems, ...separator, ...this.greenItems];
+          // if (maxLength - this.redItems.length === 3) {
+          //   maxRightLength = 3;
+          // }
+        }
+
+        if (this.greenItems.length > 5) {
+          maxLeftLength = maxLength - this.greenItems.length;
+
+          // if (maxLength - this.greenItems.length === 3) {
+          //   maxLeftLength = 3;
+          // }
+        }
+
+        // if (this.greenItems.length <= 5) {
+        //   // deltaRed = this.redItems.length;
+        // }
+        // if (this.greenItems.length > 5) {
+        //   // deltaRed = this.redItems.length;
+        // }
+
+        // for (let i = 0; i < maxLeftLength; i += 1) {
+        //   items.push(this.redItems[i]);
+        // }
+        // items.push(separator[0]);
+        // for (let i = 0; i < maxRightLength; i += 1) {
+        //   items.push(this.greenItems[i]);
+        // }
+        items = [...this.redItems, ...separator, ...this.greenItems];
+      } else if (sumLength <= maxLength) {
+        items = [...this.redItems, ...separator, ...this.greenItems];
+      }
 
       return items;
     }
