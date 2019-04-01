@@ -44,8 +44,8 @@ export default {
       let items = [];
       let separator = [];
       let maxLength = 10; // базовая настройка
-      let maxLeftLength;
-      let maxRightLength;
+      let maxLeftLength = 0;
+      let maxRightLength = 0;
 
       if (this.redItems.length && this.greenItems.length) {
         separator = [{ type: "separator" }];
